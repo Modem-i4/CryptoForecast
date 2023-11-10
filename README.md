@@ -13,4 +13,4 @@ App works for __BTC__, __ETH__, __XRP__ on __1D__, __1H__, __15m__ and __5m__ ti
 * Step-by-step simulation with applying trading strategy and positions visualuzation
 * Automatic trading simulation with iterations logging and statistics collecting
 
-### Read the [paper.docx](https://github.com/Modem-i4/CryptoForecast/Paper.docx) to learn more about it!
+### Read the [paper.docx](https://github.com/Modem-i4/CryptoForecast/blob/master/Paper.docx) to learn more about it!

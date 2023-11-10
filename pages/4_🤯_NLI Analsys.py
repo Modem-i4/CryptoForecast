@@ -1,12 +1,7 @@
-import urllib.request
-import json
 import streamlit as st
-import math
 import pandas as pd
 
 from transformers import pipeline, AutoModelForSequenceClassification, AutoTokenizer
-
-
 
 st.set_page_config(page_icon="😋")
 
