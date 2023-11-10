@@ -5,10 +5,7 @@ import yfinance as yf
 from datetime import datetime, timedelta
 import plotly.graph_objects as go
 
-st.set_page_config(
-    page_title="Forecast",
-    page_icon="😋"
-    )
+st.set_page_config(page_icon="😋")
 
 st.markdown("""
             # Welcome to Crypto Forecast app!
