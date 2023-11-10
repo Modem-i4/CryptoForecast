@@ -44,7 +44,7 @@ df.dropna(inplace=True)
 
 pred_cols = st.columns(3)
 with pred_cols[0] : st.subheader('Choose date to simulate from: ')
-with pred_cols[1] : selected_date = st.date_input('Select a date', value=df['ds'].iloc[0]+timedelta(1), min_value=config['date_from'], max_value=config['date_to']-pd_timedelta, on_change=reset_stats)
+with pred_cols[1] : selected_date = st.date_input('Select a date', value=df['ds'].iloc[0]+timedelta(1), min_value=config['date_from'], max_value=df['ds'].iloc[len(df)-2], on_change=reset_stats)
 with pred_cols[2] : selected_time = st.time_input('Select a time', step=3600, value=time(0), on_change=reset_stats)
 start_datetime = datetime.combine(selected_date, selected_time) 
 

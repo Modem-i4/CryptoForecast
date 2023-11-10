@@ -38,6 +38,7 @@ with col_to :
 with col_query :
     config['query'] = st.text_input("Query", value="Crypto")
 with col_go : 
+    st.markdown("### ")
     results = st.button('Collect!', on_click=collect_data)
 
 st.markdown("#Collection progress:")

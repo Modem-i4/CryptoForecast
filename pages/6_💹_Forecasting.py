@@ -39,7 +39,17 @@ with mode_cols[1]: st.write("Price only")
 with mode_cols[2]: forecast_low_high = st.toggle("forecast_low_high", label_visibility='hidden')
 with mode_cols[3]: st.write("Price, High/Low")
 
-#df = df[:-23]
+if use_own_data :
+    news_aggregated = pd.read_json(f'data/news_aggregated_{config["interval"]}.json')
+    news_evaluated= pd.read_json('data/news_evaluated.json')
+else :
+    news_aggregated = pd.read_json(f'default/news_aggregated_{config["interval"]}.json')
+    news_evaluated= pd.read_json('default/news_evaluated.json')
+
+news_aggregated = news_aggregated.reset_index().rename(columns={'index': 'ds'})
+df = pd.merge(df, news_aggregated, on='ds')
+
+
 
 info_cols_3 = st.columns(3)
 if mode_forecasting :
@@ -51,19 +61,10 @@ else :
         st.subheader("Backtesting")
     pred_cols = st.columns(3)
     with pred_cols[0] : st.subheader('Choose date to predict from: ')
-    with pred_cols[1] : selected_date = st.date_input('Select a date', value=df['ds'].iloc[len(df)-15], min_value=config['date_from'], max_value=config['date_to']-pd.Timedelta(config['interval']))
+    with pred_cols[1] : selected_date = st.date_input('Select a date', value=df['ds'].iloc[len(df)-5], min_value=config['date_from'], max_value=df['ds'].iloc[len(df)-2])
     with pred_cols[2] : selected_time = st.time_input('Select a time', step=3600, value=time(0))
     selected_datetime = datetime.combine(selected_date, selected_time) 
 
-if use_own_data :
-    news_aggregated = pd.read_json(f'data/news_aggregated_{config["interval"]}.json')
-    news_evaluated= pd.read_json('data/news_evaluated.json')
-else :
-    news_aggregated = pd.read_json(f'default/news_aggregated_{config["interval"]}.json')
-    news_evaluated= pd.read_json('default/news_evaluated.json')
-
-news_aggregated = news_aggregated.reset_index().rename(columns={'index': 'ds'})
-df = pd.merge(df, news_aggregated, on='ds')
 
 next_candles = pd.DataFrame([{'ds': df['ds'].iloc[-1] + pd.Timedelta(config['interval'])}])
 regressors = config['all_classes'] + config['all_indicators']
