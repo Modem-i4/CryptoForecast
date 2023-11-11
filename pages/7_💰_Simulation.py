@@ -21,7 +21,7 @@ def reset_stats() :
 st.header(f"Simulation ({config['ticker']}, {config['interval']})")
 st.subheader(f"Based on your last trained model")
 st.write(f"Indicator regressors: {', '.join(config['m_indicators'])}")
-st.write(f"Technical regressors: {', '.join(config['m_classes'])}")
+st.write(f"Sentiment regressors: {', '.join(config['m_classes'])}")
 
 data_cols = st.columns(5)
 with data_cols[0]: st.markdown("**#Data**")
